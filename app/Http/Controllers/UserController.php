@@ -160,10 +160,20 @@ $user->save();
 public function veroneline(){
 
 
-  
+    $token=JWTAuth::getToken();
+    $user=Auth::User();
+    $user->oneline=0;
+    $user->save();
+    if($token){
+        $user->oneline=1;
+        $user->save();
         return response()->json([
             'mensaje'=>User::where('oneline', 1)->get('email')
         ],200);
-   
+    }
+
+    return response()->json([
+        'mensaje'=>User::where('oneline', 1)->get('email')
+    ],200);
 }
 }
