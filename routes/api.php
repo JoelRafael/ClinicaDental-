@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\PacienteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,7 +23,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::group(['middleware' => ['jwt.auth'], 'prefix' =>'v1'], function(){
 Route::post('/refresh', [UserController::class, 'refreshtoken']);
 Route::get('/login/expire', [UserController::class, 'expire']);
-
+Route::post('/creapaciente', [PacienteController::class, 'store']);
 
 
 });

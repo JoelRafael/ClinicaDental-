@@ -15,10 +15,17 @@ class CreatePacientesTable extends Migration
     {
         Schema::create('pacientes', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('user_id')->unsigned();
+            $table->foreign("user_id")->references("id")->on("users")->onDelete("cascade");
             $table->string('nombre');
             $table->string('apellido');
+            $table->string('pais_nacimiento');
+            $table->string('ciudad_nacimiento');
             $table->string('documento');
             $table->string('direccion');
+            $table->string('telefono');
+            $table->string('telefono_emergencia');
+
             $table->timestamps();
         });
     }

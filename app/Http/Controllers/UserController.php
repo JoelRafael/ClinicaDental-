@@ -59,10 +59,11 @@ $user=User::create([
 //$user->save();
 //$user=User::create($request->all());
 return response()->json([
-    'menssage'=>'Usuario creado con exito',
+    'menssage'=>'
+    User created successfully',
 ], 202);
     }
-
+//----------------Login---------------------------------------------------------------------------------------------------------------
     public function login(Request $request){
 $credentia=$request->only('email', 'password');
 $validation=Validator::make($credentia,[
@@ -72,18 +73,15 @@ $validation=Validator::make($credentia,[
 if($validation->fails()){
     return response()->json([
         'succes'=>false,
-        'menssage'=>'Erro en la validacion',
+        'menssage'=>'Error',
         'erros'=>$validation->errors()
     ], 422);
 }
-/*$credentia->exist($credentia);
-if($credentia){
 
-}*/
-$token=JWTAuth::attempt($credentia);
-$user=Auth::User();
-$user->oneline=1;
-$user->save();
+
+
+    $token=JWTAuth::attempt($credentia);
+
 if($token){
     return response()->json([
         'succes'=>true,
@@ -95,13 +93,21 @@ if($token){
 else{
     return response()->json([
         'succes'=>false,
-        'menssage'=>'Erro token',
+        'menssage'=>'User no found',
         'erros'=>$validation->errors()
     ], 401);
 }
+
+
+/*$credentia->exist($credentia);
+if($credentia){
+
+}*/
+
+
     }
 
-
+//--------------------------------End login----------------------------------------------------------------------------------------
 
 
 public function refreshtoken(){
@@ -140,7 +146,8 @@ $user->oneline=0;
 $user->save();
         return response()->json([
             'succes'=>true,
-            'menssage'=>'Session cerrada con exito'
+            'menssage'=>'
+            Session closed successfully'
 
         ], 200);
 
