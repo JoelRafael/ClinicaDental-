@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PacienteController;
+use App\Http\Controllers\ServicioController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,3 +31,5 @@ Route::post('/creapaciente', [PacienteController::class, 'store']);
 Route::post('crearuser', [UserController::class, 'Createuser']);
 Route::post('/login', [UserController::class, 'login']);
 Route::get('/oneline', [UserController::class, 'veroneline']);
+Route::get('verservicios', [ServicioController::class, 'verservicios']);
+Route::post('nuevoservicio', [ServicioController::class, 'nuevoservicio']);
